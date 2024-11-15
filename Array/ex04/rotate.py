@@ -41,6 +41,7 @@ def display_image(transposed):
     # Format output for display similar to the expected 2D array format
     # for row in transposed[:10]:  # Print first 10 rows to limit output
     #     print(" ".join(map(str, row)))
+    transposed = np.array(transposed).squeeze()
     print(transposed)
 
      # Convert the transposed image back to a NumPy array and display it
