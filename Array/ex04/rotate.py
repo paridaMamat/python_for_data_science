@@ -38,14 +38,9 @@ def display_image(transposed):
     """
     print(f"New shape after Transpose: {transposed.shape[:2]}")
     
-    # Format output for display similar to the expected 2D array format
-    # for row in transposed[:10]:  # Print first 10 rows to limit output
-    #     print(" ".join(map(str, row)))
     transposed = np.array(transposed).squeeze()
     print(transposed)
 
-     # Convert the transposed image back to a NumPy array and display it
-    # transposed_array = np.array(transposed, dtype=np.uint8)
     plt.imshow(transposed, cmap='gray')
     plt.axis("on")  # Display axis
     plt.show()
