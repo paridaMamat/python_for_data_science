@@ -1,11 +1,11 @@
 import numpy as np
-from PIL import Image
 from load_image import ft_load
 import matplotlib.pyplot as plt
 
+
 def zoom_img(img_array):
     """
-    Get the shape information (height, width), 
+    Get the shape information (height, width),
     and cut the image in 400 * 400.
     return new image pixel in array
     """
@@ -16,13 +16,14 @@ def zoom_img(img_array):
         startx = width // 2 - (new_width // 2) + 138
         starty = height // 2 - (new_height // 2) - 84
 
-        zoomed_img = img_array[starty:starty+new_height, startx:startx+new_width, 0:1]
+        zoomed_img =\
+            img_array[starty:starty+new_height, startx:startx+new_width, 0:1]
         print("New shape after slicing:",
               zoomed_img.shape, "or", zoomed_img.shape[:2])
         print(zoomed_img)
 
         return zoomed_img
-    
+
     except Exception as e:
         print(f"Error: {e}")
 
@@ -33,7 +34,7 @@ def display_image(zoomed_img):
     """
     plt.imshow(np.squeeze(zoomed_img), cmap='gray')
     plt.show()
-    
+
 
 def main():
     """
@@ -46,9 +47,6 @@ def main():
     if img_array is not None:
         zoomed_img = zoom_img(img_array)
         display_image(zoomed_img)
-
-
-
 
 
 if __name__ == "__main__":

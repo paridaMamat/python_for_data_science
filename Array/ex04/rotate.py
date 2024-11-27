@@ -2,9 +2,10 @@ import numpy as np
 from load_image import ft_load
 import matplotlib.pyplot as plt
 
+
 def zoom_img(img_array):
     """
-    Get the shape information (height, width), 
+    Get the shape information (height, width),
     and cut the image in 400 * 400.
     return new image pixel in array
     """
@@ -15,12 +16,13 @@ def zoom_img(img_array):
         startx = width // 2 - (new_width // 2) + 138
         starty = height // 2 - (new_height // 2) - 84
 
-        zoomed_img = img_array[starty:starty+new_height, startx:startx+new_width, 0:1]
+        zoomed_img =\
+            img_array[starty:starty+new_height, startx:startx+new_width, 0:1]
         print(f"The shape of image is: {zoomed_img.shape}")
         print(zoomed_img)
 
         return zoomed_img
-    
+
     except Exception as e:
         print(f"Error: {e}")
 
@@ -29,22 +31,23 @@ def manual_transpose(zoomed_img):
     """
     transposes a 2D array manually
     """
-    transposed = [[zoomed_img[j][i] for j in range(len(zoomed_img))] for i in range(len(zoomed_img[0]))]
+    transposed =\
+        [[zoomed_img[j][i] for j in range(len(zoomed_img))] for i in range(len(zoomed_img[0]))]
     return np.array(transposed)
+
 
 def display_image(transposed):
     """
     Display the new shape and data of the transposed image.
     """
     print(f"New shape after Transpose: {transposed.shape[:2]}")
-    
+
     transposed = np.array(transposed).squeeze()
     print(transposed)
-
     plt.imshow(transposed, cmap='gray')
     plt.axis("on")  # Display axis
     plt.show()
-    
+
 
 def main():
     """
@@ -57,9 +60,6 @@ def main():
         zoomed_img = zoom_img(img_array)
         transposed = manual_transpose(zoomed_img)
         display_image(transposed)
-
-
-
 
 
 if __name__ == "__main__":
