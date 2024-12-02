@@ -10,7 +10,7 @@ def ft_load(path: str):
     try:
         img = Image.open(path)
 
-        if img.format.upper() != 'JPEG':
+        if img.format not in ['JPEG', 'JPG']:
             raise ValueError("Image format Only JPG and JPEG are allowed")
 
         img = img.convert('RGB')

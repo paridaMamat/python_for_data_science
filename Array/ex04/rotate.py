@@ -18,7 +18,9 @@ def zoom_img(img_array):
 
         zoomed_img =\
             img_array[starty:starty+new_height, startx:startx+new_width, 0:1]
-        print(f"The shape of image is: {zoomed_img.shape}")
+        shape_full = zoomed_img.shape
+        shape_2d = zoomed_img.shape[:2]
+        print(f"The shape of the image is: {shape_full} or {shape_2d}")
         print(zoomed_img)
 
         return zoomed_img
@@ -31,8 +33,15 @@ def manual_transpose(zoomed_img):
     """
     transposes a 2D array manually
     """
-    transposed =\
-        [[zoomed_img[j][i] for j in range(len(zoomed_img))] for i in range(len(zoomed_img[0]))]
+    transposed = []  # Initialize the transposed array
+
+    # Outer loop for columns (new rows in the transposed image)
+    for i in range(len(zoomed_img[0])):
+        new_row = []  # Initialize a new row for the transposed image
+        # Inner loop for rows (new columns in the transposed image)
+        for j in range(len(zoomed_img)):
+            new_row.append(zoomed_img[j][i])  # Add each pixel to the new row
+        transposed.append(new_row)  # Add the new row to the transposed array
     return np.array(transposed)
 
 
@@ -54,12 +63,17 @@ def main():
     load the image "animal.jpeg", print some information
     about it and display it after "zooming"
     """
+    try:
+        img_array = ft_load("animal.jpeg")
+        if img_array is not None:
+            zoomed_img = zoom_img(img_array)
+            transposed = manual_transpose(zoomed_img)
+            display_image(transposed)
 
-    img_array = ft_load("animal.jpeg")
-    if img_array is not None:
-        zoomed_img = zoom_img(img_array)
-        transposed = manual_transpose(zoomed_img)
-        display_image(transposed)
+    except AssertionError as e:
+        print("AssertionError:", e)
+    except Exception as e:
+        print("Exception:", e)
 
 
 if __name__ == "__main__":

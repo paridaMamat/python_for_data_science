@@ -11,7 +11,7 @@ def ft_load(path: str):
     try:
         img = Image.open(path)
 
-        if img.format.upper() != 'JPEG':
+        if img.format not in ['JPEG', 'JPG']:
             raise ValueError("Image format Only JPG and JPEG are allowed")
 
         img = img.convert('RGB')
@@ -21,7 +21,8 @@ def ft_load(path: str):
         print(img_array)
         plt.imshow(img_array)
         plt.subplots_adjust(bottom=0)
-        plt.figtext(0.5, 0.05, "Figure VIII.1: Original", wrap=True, horizontalalignment='center', fontsize=12)
+        plt.figtext(0.5, 0.05, "Figure VIII.1: Original", wrap=True,
+                    horizontalalignment='center', fontsize=12)
         plt.axis("off")
         plt.show()
         return img_array
